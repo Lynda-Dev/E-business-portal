@@ -1,0 +1,36 @@
+<div class="form-body" class="container-fluid">
+  <div class="website-logo">
+    <a>
+      <div class="logo">
+        <img class="logo-size" src="assets/img/logo.png" alt="">
+      </div>
+    </a>
+  </div>
+  <div class="row">
+    <div class="img-holder">
+      <div class="bg"></div>
+      <div class="info-holder">
+        <img src="assets/img/graphic1.svg" alt="">
+      </div>
+    </div>
+    <div class="form-holder pt-5">
+      <div class="form-content">
+        <div class="form-items">
+          <h4>Vendor Insurance Portal</h4>
+          <div class="page-links pt-4">
+            <a routerLink="/login" class="">Login</a><a routerLink="/register">Register</a>
+          </div>
+
+          <!--Page-->
+          <router-outlet>
+          </router-outlet>
+          <!--/Page-->
+
+          <div class="other-links">
+            <span>Check</span><a href="#">Website</a><a href="#">Ebusiness</a><a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

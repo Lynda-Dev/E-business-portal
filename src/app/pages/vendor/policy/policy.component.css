@@ -1,0 +1,121 @@
+table {
+  width: 100%;
+}
+
+tr.product-list-detail-row {
+  height: 0;
+}
+
+tr.product-list-element-row:not(.product-list-expanded-row):hover {
+  background: rgba(119, 119, 119, 0.367);
+}
+
+tr.product-list-element-row:not(.product-list-expanded-row):active {
+  background: #efefef;
+}
+
+.product-list-element-row td {
+  border-bottom-width: 0;
+}
+
+.product-list-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.product-list-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.product-list-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.product-list-element-description {
+  padding: 16px;
+  /* border: solid #777 1px; */
+  width: 100%;
+}
+
+.product-list-element-description .col {
+  padding: 10px;
+  border: solid #777 1px;
+}
+
+.product-list-element-description .top-title small {
+  padding: 5px;
+  border: solid #777 1px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.cdk-column-expandedDetail {
+  background-color: rgba(250, 93, 93, 0.095);
+}
+
+.product-list-expanded-row {
+  background-color: rgba(234, 23, 23, 0.156);
+  border-bottom: 1px solid rgba(146, 145, 145, 0.17);
+  border-top: 1px solid rgba(41, 41, 41, 0.578);
+  font-weight: bold;
+}
+
+.product-list-expanded-row td.mat-cell {
+  border: 1px solid rgba(146, 145, 145, 0.305);
+  text-align: center !important;
+}
+
+td.cdk-column-status {
+  color: red;
+  padding: 10px;
+  /* border: 1px dotted rgba(119, 119, 119, 0.558); */
+  font-style: italic;
+  font-size: 11px;
+}
+
+.product-list-element-description-attribution {
+  opacity: 0.5;
+}
+
+.mat-header-cell {
+  border: 1px dotted rgba(119, 119, 119, 0.558);
+  text-align: center !important;
+  vertical-align: bottom !important;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+.product-img-box {
+  display: block;
+}
+
+.product-img {
+  height: 80px;
+  width: auto;
+  float: left;
+  margin-right: 20px;
+}
+
+.btn-status {
+  cursor: unset;
+}
+
+/* .mat-calendar-period-button {
+  display: none !important;
+}
+
+.mat-calendar-period-button {
+  display: none !important;
+} */
+

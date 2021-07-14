@@ -1,0 +1,17 @@
+<h5> <i class="fas fa-tachometer-alt"></i> Dashboard </h5>
+<hr>
+<!-- inner-content-box -->
+<div class="row inner-content-box shadow">
+  <div class="col" *ngFor="let dashboard  of dashboard ">
+    <div [ngClass]="dashboard.bgColor" class="card border  text-white text-center">
+      <!-- <mat-icon class="float-right" matBadge="22" matBadgeColor="accent" matBadgePosition="above before">card_giftcard
+      </mat-icon> -->
+      <div class="card-body dashboard-card">
+        <span [ngClass]="dashboard.badgeColor" class="badge badge-pill "> <i [ngClass]="dashboard .icon"
+            class="fas"></i></span>
+        <h5 class="number">{{dashboard .count}} </h5>
+        <small>{{dashboard .title}}</small>
+      </div>
+    </div>
+  </div>
+</div> <!-- inner-content-box -->

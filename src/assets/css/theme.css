@@ -1,0 +1,121 @@
+@media (max-width: 1023px) and (min-width: 901px) {
+  body.sb-top #sidebar_left .sidebar-menu>li {
+    min-width: 76px;
+    min-height: 76px;
+    float: left;
+    border-radius: 4px;
+    position: relative;
+    display: block;
+  }
+
+  body.sb-top #sidebar_left .sidebar-menu>li a {
+    padding: 12px 0 8px;
+    line-height: inherit;
+    text-align: center;
+    padding: 26px 0 18px;
+    line-height: inherit;
+    text-align: center;
+    padding: 26px 0 18px;
+    font-weight: 700;
+  }
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar-menu li a {
+  text-decoration: none;
+
+}
+
+.menu-box-r {
+  width: 100px !important;
+  height: 100px !important;
+  display: block;
+  background-color: transparent;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.menu-box-r:hover {
+  background-color: #3c4655;
+}
+
+.menu-box-r i {
+  font-size: 25px;
+  color: white;
+}
+
+.menu-box-r span {
+  font-size: 15px;
+  color: white;
+  font-weight: 500;
+  display: block;
+}
+
+.bg-hero {
+  padding: 40px 20px;
+  background-color: #2a3342;
+}
+
+.inner-hero {
+  background-color: #d9dcde;
+  border-radius: 8px;
+  padding: 50px 20px 20px 20px;
+}
+
+.top-Breadcrumbs a {
+  font-size: 20px;
+  color: grey;
+}
+
+.sidebar-menu-box {
+  height: 100% !important;
+  margin-top: 20px;
+  flex-basis: 0;
+}
+
+.menu-box-t {
+  width: 120px !important;
+  height: 100px !important;
+  display: block;
+  background-color: transparent;
+  border-radius: 5px 0px 0px 5px;
+  margin-left: 10px;
+}
+
+.menu-box-t:hover {
+  background-color: #f9f9f9;
+}
+
+.menu-box-t i {
+  font-size: 25px;
+  color: rgb(61, 61, 61);
+}
+
+.menu-box-t span {
+  font-size: 15px;
+  color: rgb(61, 61, 61);
+  font-weight: 500;
+  display: block;
+}
+
+
+.content-box {
+  background-color: #f9f9f9;
+  border-radius: 7px;
+  padding: 30px 15px;
+}
+
+.inner-content-box {
+  -webkit-box-shadow: 0 2px 0 #e5eaee;
+  box-shadow: 0 2px 0 #e5eaee;
+  padding: 28px 32px;
+  border-radius: 5px;
+  background-color: #fff;
+}

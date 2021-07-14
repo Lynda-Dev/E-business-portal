@@ -1,0 +1,30 @@
+ /* Structure */
+ table {
+   width: 100%;
+ }
+
+ .mat-form-field {
+   font-size: 14px;
+   width: 100%;
+ }
+
+ .input-80-width {
+   width: 60%
+ }
+
+ .bg-grey {
+   background-color: rgba(169, 169, 169, 0.224);
+ }
+
+ .claim-img {
+   max-width: 250px;
+   max-height: 150px;
+   min-width: 250px;
+   min-height: 150px;
+   border: 1px dotted #17a2b8;
+   contain: content
+ }
+ 
+ .new{
+   background-color: rgb(9, 9, 194);
+ }

@@ -1,0 +1,194 @@
+<h5>  <i class="fas fa-file-upload"></i> Reports </h5>
+<hr>
+<!-- inner-content-box -->
+<div class="row inner-content-box shadow">
+  <div class="col-md-11 mr-auto ml-auto  ">
+    <form [formGroup]="claimsFormGroup">
+      <h6>Generate Reports</h6>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>Report Type</mat-label>
+            <mat-select formControlName="reportType">
+              <mat-option value="option1">Policies</mat-option>
+              <mat-option value="option3">Claims</mat-option>
+            </mat-select>
+            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>Report Status</mat-label>
+            <mat-select formControlName="reportStatus">
+              <mat-option value="option1">Pending</mat-option>
+              <mat-option value="option3">Paid</mat-option>
+            </mat-select>
+            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- row -->
+
+      <!-- row -->
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="input-80-width" color="primary">
+            <mat-label> Reports From: </mat-label>
+            <input matInput [matDatepicker]="dateFrom" formControlName="dateFrom">
+            <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+            <mat-datepicker #dateFrom></mat-datepicker>
+          </mat-form-field>
+          <button class="ml-3" mat-stroked-button color="warn" (click)="dateFrom.open()" type="button">Select</button>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field class="input-80-width" color="primary">
+            <mat-label> Reports to:</mat-label>
+            <input matInput [matDatepicker]="DateTo" formControlName="dateTo">
+            <mat-datepicker-toggle matSuffix [for]="DateTo"></mat-datepicker-toggle>
+            <mat-datepicker #DateTo></mat-datepicker>
+          </mat-form-field>
+          <button class="ml-3" mat-stroked-button color="warn" (click)="DateTo.open()" type="button">Select</button>
+        </div>
+      </div>
+      <!-- row -->
+
+      <div class="row pt-3">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-danger rounded-0 float-right text-capitalize mt-2 ml-1">
+            <i class="far fa-calendar-plus"></i> Generate </button>
+
+
+          <button class="btn btn-danger rounded-0 float-right text-capitalize mt-2 ml-1" type="button">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Generating...
+          </button>
+        </div>
+      </div>
+      <!-- row -->
+    </form>
+  </div>
+</div>
+
+
+<!-- inner-content-box -->
+<div class="row inner-content-box shadow mt-3">
+  <div class="col-md-12 mr-auto ml-auto">
+    <h6> Policy Report </h6>
+    <hr>
+
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">SN</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Policy Number</th>
+          <th scope="col">Product</th>
+          <th scope="col">Serial Number </th>
+          <th scope="col">Policy Start Date </th>
+          <th scope="col">Policy End Date </th>
+          <th scope="col">Store </th>
+          <th scope="col">Value</th>
+          <th scope="col">Premium</th>
+          <th scope="col"> Insurance </th>
+          <th scope="col"> Status </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>vict</td>
+          <td>agi</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+        </tr>
+        <tr>
+          <th scope="row">1</th>
+          <td>vict</td>
+          <td>agi</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+        </tr>
+        <tr>
+          <th scope="row">1</th>
+          <td>vict</td>
+          <td>agi</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+    <h6>Claim Report </h6>
+    <hr>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">SN</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Policy Number</th>
+          <th scope="col">Product</th>
+          <th scope="col">Serial Number </th>
+          <th scope="col">Policy Start Date </th>
+          <th scope="col">Policy End Date </th>
+          <th scope="col">Store </th>
+          <th scope="col">Value</th>
+          <th scope="col">Premium</th>
+          <th scope="col"> Insurance </th>
+          <th scope="col"> Claim </th>
+          <th scope="col"> Status </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>vict</td>
+          <td>agi</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+          <td>aa</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

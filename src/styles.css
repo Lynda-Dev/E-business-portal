@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@fortawesome\fontawesome-free\css\all.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url(assets/css/theme.css );
+
+.policyDate .mat-calendar-period-button {
+  display: none !important;
+}
+
+
+.spinner {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

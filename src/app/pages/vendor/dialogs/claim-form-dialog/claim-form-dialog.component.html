@@ -1,0 +1,295 @@
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" [mat-dialog-close]="'data'"
+                class="btn btn-sm btn-outline-danger float-left  rounded-0  mt-2"> <i class="fa fa-arrow-left"
+                  aria-hidden="true"></i> Back
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+
+
+
+          <!-- inner-content-box -->
+          <div class="row inner-content-box shadow">
+            <div class="col-md-11 mr-auto ml-auto  ">
+              <form [formGroup]="claimFormGroup">
+
+                <h5>Customer Details<small><i> (Auto Filled)</i></small></h5>
+                <hr>
+                <!--<div class="pt-3"></div>
+                <h6>Claim Details</h6>
+                 row 
+                <div class="row">
+                  <div class="col-md-6">
+
+                    <mat-form-field class="input-80-width" color="primary">
+                      <mat-label> Date of incident </mat-label>
+                      <input matInput [matDatepicker]="incidentDate" formControlName="incidentDate">
+                      <mat-datepicker-toggle matSuffix [for]="incidentDate"></mat-datepicker-toggle>
+                      <mat-datepicker #incidentDate></mat-datepicker>
+                    </mat-form-field>
+                    <button class="ml-3" mat-raised-button (click)="incidentDate.open()" type="button">Select</button>
+                  </div>
+
+                  <div class="col-md-6">
+                    <mat-form-field class="input-80-width" color="primary">
+                      <mat-label> Date of notification</mat-label>
+                      <input matInput [matDatepicker]="notificationDate" formControlName="notificationDate">
+                      <mat-datepicker-toggle matSuffix [for]="notificationDate"></mat-datepicker-toggle>
+                      <mat-datepicker #notificationDate></mat-datepicker>
+                    </mat-form-field>
+                    <button class="ml-3" mat-raised-button (click)="notificationDate.open()"
+                      type="button">Select</button>
+                  </div>
+                </div>
+               - row -->
+
+                <!--
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field>
+                      <mat-label>Type Indemnity claimed for</mat-label>
+                      <mat-select formControlName="indemnity">
+                        <mat-option value="option1">Screen damage</mat-option>
+                        <mat-option value="option3">Replacement</mat-option>
+                      </mat-select>
+                      <mat-hint>Errors appear instantly!</mat-hint> 
+                    </mat-form-field>
+                  </div>
+                </div>
+               
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="input-full-width">
+                      <textarea matInput placeholder="Claim Description" formControlName="claimDiscription"
+                        rows="3"></textarea>
+                    </mat-form-field>
+                  </div>
+
+                </div>-->
+                <!-- row 
+                <h6>Item Images </h6>
+                row 
+                <div class="row">
+                  <div class="col text-center">
+                    <img class="claim-img" src="" alt="Image 1">
+                    <button type="button" class="btn btn-outline-info  rounded-0 mt-2">
+                      <i class="fas fa-file-image"></i> Upload</button>
+                  </div>
+                  <div class="col text-center ">
+                    <img class="claim-img" src="" alt="Image 2">
+                    <button type="button" class="btn btn-outline-info  rounded-0 mt-2">
+                      <i class="fas fa-file-image"></i> Upload</button>
+                  </div>
+                  <div class="col text-center">
+                     <img class="claim-img" src="/assets/img/login_bg.jpg" alt="Image 3"> 
+                    <img class="claim-img" src="" alt="Image 3">
+                    <button type="button" class="btn btn-outline-info  rounded-0  mt-2">
+                      <i class="fas fa-file-image"></i> Upload</button>
+                  </div>
+                </div>-->
+                <!-- row -->
+
+                <div class="pt-4"></div>
+                
+                <section class="bg- grey p-3">
+                  <p><b>Customer information</b></p>
+                  <hr>
+                 
+                  <div class="row">
+                    <div class="col-md-3">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Customer Name:" formControlName="customerName">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Email address:"
+                          formControlName="emailAddress">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Phone No:" formControlName="phoneNumber">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+               
+
+            <div class="col-md-3">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Contact Address:" formControlName="contactAddress">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+                  </div>
+                
+                  </section>
+
+                    <section class="bg-grey p-3">
+                      <p><b>Vechicle information</b></p>
+                      <hr>
+                      <div class="row">
+                    <div class="pt-4"></div>
+                    <div class="col-md-3">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Engine No:" formControlName="engineNo">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Chassis Info:" formControlName="chassisInfo">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+                  
+                  <!-- row -->
+
+                  <!-- row -->
+                  
+                    <div class="col-md-3">
+                      <mat-form-field class="input-full-width">
+                        <textarea readonly matInput placeholder="Registration Info" formControlName="registrationInfo"
+                          rows="3"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                
+                    <div class="row">
+                       <div class="col-md-6">
+                       <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Vehicle Model" formControlName="vehicleModel">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+
+                  <div class="col-md-6">
+                    <mat-form-field class="input-full-width">
+                      <input type="text" readonly matInput placeholder="Year of make" formControlName="yearOfmake">
+                      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    </mat-form-field>
+                  </div>
+                </div>
+              </section>
+
+              <section class="bg-grey p-3">
+                  <p><b>Policy information</b></p>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Sum Insured" formControlName="sumInsured">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Premium" formControlName="premium">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-4">
+                      <mat-form-field class="input-full-width">
+                        <input type="text" readonly matInput placeholder="Cover date" formControlName="cover date">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <mat-form-field class="input-full-width">
+                          <input type="text" readonly matInput placeholder="Expiry date" formControlName="expiryDate">
+                          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-4">
+                        <mat-form-field class="input-full-width">
+                          <input type="text" readonly matInput placeholder="Type of cover" formControlName="typeOfCover">
+                          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-4">
+                        <mat-form-field class="input-full-width">
+                          <input type="text" readonly matInput placeholder="Transaction status" formControlName="transactionStatus">
+                          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        </mat-form-field>
+                      </div>
+
+                  </div>
+                
+                </section>
+
+                <section class="bg-grey p-3">
+                  <p><b>Policy feature</b></p>
+                  <hr>
+
+                  <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="input-full-width">
+                      <input type="text" readonly matInput placeholder="Cover" formControlName="cover">
+                      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-md-6">
+                    <mat-form-field class="input-full-width">
+                      <input type="text" readonly matInput placeholder="Type" formControlName="type">
+                      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    </mat-form-field>
+                  </div>
+                  </div>
+                </section>
+
+                  <section class="bg-White p-3">
+                   <hr>
+                  <div class="row">
+                  <div class="col-md-2">
+                    <button mat-raised-button color="accent">View ID             <i class="fas fa-street-view"></i></button>
+                  
+                  </div>
+
+                  <div class="col-md-2">
+                    <button mat-raised-button color="accent">View lisence         <i class="fas fa-car"></i></button>
+                
+                  </div>
+
+                  <div class="col-md-8"></div>
+                </div>
+
+              </section>
+                  <!-- row -->
+                
+           
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-success rounded-0 float-right text-capitalize mt-2">
+                      Download      <i class="fas fa-download"></i></button>
+                  </div>
+                
+
+               
+                <!-- row -->
+
+              </form>
+            </div>
+          </div>
+
+          <button type="button" [mat-dialog-close]="'data'" class="btn btn-outline-danger  rounded-0 float-right mt-2">
+            <i class="fas fa-times "></i> Close
+            </button>
+
+        </div>

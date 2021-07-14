@@ -1,0 +1,90 @@
+<app-nav></app-nav>
+
+
+<div class="container-fluid  bg-hero ">
+
+  <section class="inner-hero">
+    <!-- <div class="container top-Breadcrumbs pb-5">
+        <a href="">Home - <small>Dashboard</small></a>
+      </div> -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="sidebar-menu-box ">
+          <ul class="nav sidebar-menu  ">
+            <!-- <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/dashboard">
+                <i class="fas fa-user-tie"></i>
+                <span class="sidebar-title">Dashboard</span>
+              </a>
+            </li> -->
+            <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/vendors">
+                <i class="fas fa-briefcase"></i>
+                <span class="sidebar-title">E-business</span>
+              </a>
+            </li>
+
+            <!--<li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/addvendors">
+                <i class="fas fa-user-plus"></i>
+                <span class="sidebar-title">Create Vendor</span>
+              </a>
+            </li>
+            <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/policies">
+                <i class="fas fa-briefcase"></i>
+                <span class="sidebar-title">Policies</span>
+              </a>
+            </li>
+            <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/claim">
+                <i class="fas fa-hand-holding-heart"></i>
+                <span class="sidebar-title">Claims</span>
+              </a>
+            </li>
+            <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/covers">
+                <i class="fas fa-umbrella"></i>
+                <span class="sidebar-title">Covers</span>
+              </a>
+            </li>
+            <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/roles">
+                <i class="fas fa-users-cog"></i>
+                <span class="sidebar-title"> Roles / LOB </span>
+              </a>
+            </li>
+            <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/users">
+                <i class="fas fa-users"></i>
+                <span class="sidebar-title">Users</span>
+              </a>
+            </li>
+            <li class=" text-center ">
+              <a class="menu-box-t pt-3" routerLink="/admin/report">
+                <i class="fas fa-file-upload"></i>
+                <span class="sidebar-title">Reports</span>
+              </a>
+            </li>-->
+          </ul>
+        </div>
+
+        <div class="col-md-10 content-box shadow">
+          <div class="container">
+
+
+            <!--Vendor Inner-->
+            <router-outlet>
+            </router-outlet>
+            <!--/Vendor Inner-->
+
+          </div> <!-- container -->
+        </div> <!-- content-box -->
+      </div>
+    </div>
+  </section>
+
+
+
+</div>

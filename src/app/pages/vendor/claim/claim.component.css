@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+.mat-elevation-z8 {
+  width: 100%
+}
+
+.mat-elevation-z8 table td {
+  padding-left: 7px !important;
+  padding-right: 7px !important;
+  border-left: 1px solid rgba(128, 128, 128, 0.101);
+}
+
+/* .mat-elevation-z8 table td .small {
+  font-size: 10px !important;
+} */
+
+.mat-elevation-z8 table td .status {
+  text-transform: capitalize;
+}

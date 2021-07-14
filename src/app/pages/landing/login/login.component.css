@@ -1,0 +1,15 @@
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.input-80-width {
+  width: 60%
+}
+
+.error {
+  color: rgb(202, 5, 5);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
