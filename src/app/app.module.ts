@@ -11,6 +11,8 @@ import { AngularmaterialModule } from './ui/materials/angularmaterial.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { PipeModule } from './pipe/pipe.module';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { PipeModule } from './pipe/pipe.module';
     FormsModule,
     ReactiveFormsModule,
     AngularmaterialModule,
-    PipeModule
+    PipeModule,
+    ExcelExportModule
   ],
   entryComponents: [],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],

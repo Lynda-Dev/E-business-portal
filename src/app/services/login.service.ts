@@ -8,9 +8,8 @@ import { baseUrl } from '../base/base-url';
   providedIn: 'root'
 })
 export class LoginService {
-
-
   private loginUrl = baseUrl + '/DoorEntrance';
+
   constructor(
     private http: HttpClient,
     private router: Router,

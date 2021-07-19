@@ -1,176 +1,326 @@
-<h5> <i class="fas fa-briefcase"></i> E-business </h5>
-<hr>
+<h5><i class="fas fa-briefcase"></i> E-business</h5>
+<hr />
 <!-- inner-content-box -->
 <div class="row inner-content-box shadow">
-
   <div class="row">
-
-
-
     <div class="col-md-2">
-     
-
-
-
-      <mat-form-field class="input-80-width" color="primary" appearance="fill">
-      <mat-label>Select start date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="startDate">
+      <mat-form-field
+        class="input-80-width"
+        color="primary"
+        appearance="fill"
+        [formGroup]="ebusinessFormGroup"
+      >
+        <mat-label>Select start date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="startDate" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      
       </mat-form-field>
-
     </div>
 
     <div class="col-md-2">
       <mat-form-field appearance="fill" [formGroup]="ebusinessFormGroup">
         <mat-label>Select end date</mat-label>
-        <input matInput [matDatepicker]="pick" formControlName="endDate">
+        <input matInput [matDatepicker]="pick" formControlName="endDate" />
         <mat-datepicker-toggle matSuffix [for]="pick"></mat-datepicker-toggle>
         <mat-datepicker #pick></mat-datepicker>
-        
       </mat-form-field>
-   
-    </div>
- 
-
-    <div class="col-md-2">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!ebusinessFormGroup.valid">Search</button>
-   
     </div>
 
-
+    <div class="col-md-2">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!ebusinessFormGroup.valid"
+        (click)="getdata()"
+      >
+        Search
+      </button>
+    </div>
 
     <div class="col-md-2">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" [formGroup]="searchByFormgroup">
         <mat-label>Search by</mat-label>
-        <mat-select>
-          <mat-option value="1">Quote Id</mat-option>
-          <mat-option value="2">Policy No</mat-option>
-          <mat-option value="3">Bank transaction Id</mat-option>
+        <mat-select formControlName="dataType">
+          <mat-option value="1">Policy No</mat-option>
+          <mat-option value="3">Quote Id</mat-option>
+          <mat-option value="2">Ref No</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
     <div class="col-md-2">
-      <mat-form-field appearance="fill">
-        <mat-label>Data type</mat-label>
-        <input matInput formConrtolName="dataType"> 
+      <mat-form-field appearance="fill" [formGroup]="searchByFormgroup">
+        <mat-label>Search</mat-label>
+        <input matInput formControlName="searchBy" />
       </mat-form-field>
     </div>
-  
+
     <div class="col-md-2">
-      <button mat-raised-button color="warn" type="submit" [disabled]="!searchByFormgroup.valid">Search</button> 
-    </div>
-
- </div>
-
-<div class="container">
-
-  <div class="row">
-    <div class="col-md-6">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
-    </div>
-
-    <div class="col-md-6">
-      <mat-form-field>
-        <mat-label>Sort List </mat-label>
-        <mat-select [(value)]="selected">
-          <mat-option *ngFor="let options of dataSource.data" value="option1">{{options.status}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-  
+      <button
+        mat-raised-button
+        color="warn"
+        type="submit"
+        [disabled]="!searchByFormgroup.valid"
+        (click)="getDataById()"
+      >
+        Search
+      </button>
     </div>
   </div>
-</div>
-  
- 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field>
+          <input
+            matInput
+            (keyup)="applyFilter($event.target.value)"
+            placeholder="Filter"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field>
+          <mat-label>Sort List </mat-label>
+          <mat-select>
+            <mat-option *ngFor="let options of dataSource.data" value="option1"
+              >{{ options.transactionStatus }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-
       <!-- SN Column -->
       <ng-container matColumnDef="sn">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> SN </th>
-        <td mat-cell *matCellDef="let row; let i = index"> {{i+1}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>SN</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.firstName }} {{ row.lastName }}
+        </td>
       </ng-container>
 
       <!-- Line of  Business Column -->
       <ng-container matColumnDef="productName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product name </th>
-        <td mat-cell *matCellDef="let row"> {{row.productName}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Product name</th>
+        <td mat-cell *matCellDef="let row">{{ row.product }}</td>
       </ng-container>
 
       <!-- Line of  Business Column -->
       <ng-container matColumnDef="sumInsured">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sum Insured </th>
-        <td mat-cell *matCellDef="let row"> {{row.sumInsured}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sum Insured</th>
+        <td mat-cell *matCellDef="let row">{{ row.insured }}</td>
       </ng-container>
 
       <!-- address Column -->
       <ng-container matColumnDef="premium">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Premium </th>
-        <td mat-cell *matCellDef="let row"> {{row.premium}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Premium</th>
+        <td mat-cell *matCellDef="let row">{{ row.amount }}</td>
       </ng-container>
 
       <!-- Email Column -->
       <ng-container matColumnDef="referenceNo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reference No </th>
-        <td mat-cell *matCellDef="let row"> {{row.referenceNo}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Reference No</th>
+        <td mat-cell *matCellDef="let row">{{ row.refNo }}</td>
       </ng-container>
 
       <!--  Contact Column -->
       <ng-container matColumnDef="phoneNo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone No </th>
-        <td mat-cell *matCellDef="let row"> {{row.phoneNo}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone No</th>
+        <td mat-cell *matCellDef="let row">{{ row.phoneNumber }}</td>
       </ng-container>
       <!-- Edit Column -->
       <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let row">{{ row.date | date }}</td>
       </ng-container>
       <!-- Status Column -->
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
         <td mat-cell *matCellDef="let row">
           <!-- SWITCH -->
-          <span [ngSwitch]="row.status">
-            <small *ngSwitchCase="'disabled'" class="text-danger status"> <small> {{row.status }} </small></small>
-            <small *ngSwitchCase="'pending'" class="text-warning status"> <small> {{row.status }} </small></small>
-            <small *ngSwitchCase="'active'" class="text-success status"><small> {{row.status }} </small> </small>
+          <span [ngSwitch]="row.transactionStatus">
+            <small *ngSwitchCase="'failed'" class="text-danger status">
+              <small> {{ row.transactionStatus }} </small></small
+            >
+            <small *ngSwitchCase="'NULL'" class="text-warning status">
+              <small> {{ row.transactionStatus }} </small></small
+            >
+            <small *ngSwitchCase="'successful'" class="text-success status"
+              ><small> {{ row.transactionStatus }} </small>
+            </small>
           </span>
         </td>
       </ng-container>
 
       <!-- View Column -->
       <ng-container matColumnDef="detail">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Details </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
         <td mat-cell *matCellDef="let row">
-          <button type="button" (click)="openClaimDialog(element)" class="btn btn-danger btn-sm rounded-0 "><i
-              class="fas fa-eye"></i></button>
+          <button
+            type="button"
+            (click)="openClaimDialog(row)"
+            class="btn btn-danger btn-sm rounded-0"
+          >
+            <i class="fas fa-eye"></i>
+          </button>
 
           <mat-menu #status="matMenu">
-            <button mat-menu-item>{{ row.status == 'active'? 'Disabled' : ' Enable' }}</button>
+            <button mat-menu-item>
+              {{ row.status == "active" ? "Disabled" : " Enable" }}
+            </button>
           </mat-menu>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-      </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[10, 20, 40, 100]"></mat-paginator>
   </div>
 
+  <div class="float-right">
+    <button
+      (click)="excelexport.save()"
+      type="button"
+      class="btn btn-success float-right"
+      [disabled]="emptydataSource"
+    >
+      Download
+    </button>
+  </div>
+</div>
+<!-- inner-content-box -->
 
+<!-- <button type="button" class="k-button" (click)="excelexport.save()">Export To Excel</button> -->
+<kendo-excelexport [data]="data" fileName="Ebusiness report.xlsx" #excelexport>
+  <kendo-excelexport-column field="firstName" title="First Name" [width]="200">
+  </kendo-excelexport-column>
 
-</div> <!-- inner-content-box -->
+  <kendo-excelexport-column field="lastName" title="Last Name" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="emailAddress"
+    [cellOptions]="{ format: '#,##0.00' }"
+    title="Email address"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="phoneNumber"
+    [cellOptions]="{ format: '#,##0.00' }"
+    title="Phone number"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="address"
+    title="Contact Address"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="engineNumber"
+    title="Engine no"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="chassisInformation"
+    title="Chassis info"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="registrationNumber"
+    title="Registration no"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="yearOfmake"
+    title="Year of make"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="vehicleModel"
+    title="Vehicle model"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column field="insured" title="Sum insured" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column field="amount" title="Premium" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column field="duration" title="Duration" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="customPolicyNumber"
+    title="Policy number"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column field="gateway" title="Gateway" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="isProcessed"
+    title="Is processed"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="policyStatusId"
+    title="Policy status Id"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column field="product" title="Product" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column field="quoteId" title="Quote Id" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column field="refNo" title="Ref No" [width]="200">
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="vehicleMake"
+    title="Vehicle make"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+
+  <kendo-excelexport-column
+    field="transactionStatus"
+    title="Status"
+    [width]="200"
+  >
+  </kendo-excelexport-column>
+</kendo-excelexport>

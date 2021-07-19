@@ -7,7 +7,8 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./claim.component.css']
 })
 export class ClaimComponent implements OnInit {
-  displayedColumns: string[] = ['sn', 'product', 'serialNumber', 'incidentDate', 'notificationDate', 'value', 'ZGIPremium', 'claimAmount', 'indemnity', 'status'];
+  displayedColumns: string[] = [
+    'sn', 'product', 'serialNumber', 'incidentDate', 'notificationDate', 'value', 'ZGIPremium', 'claimAmount', 'indemnity', 'status'];
   dataSource: MatTableDataSource<IclaimData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

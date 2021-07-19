@@ -8,13 +8,15 @@ import { AddVendorComponent } from './add-vendor/add-vendor.component';
 import { AdminCoversComponent } from './admin-covers/admin-covers.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminRolesComponent } from './admin-roles/admin-roles.component';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularmaterialModule
+    AngularmaterialModule,
+    ExcelExportModule
   ],
   declarations: [
     VendorsComponent,
