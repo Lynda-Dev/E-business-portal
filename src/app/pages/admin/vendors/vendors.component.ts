@@ -132,7 +132,8 @@ export class VendorsComponent implements OnInit {
           console.log('data: ', res['data'])
           this.reportsList =  res['data'];
           this.processExcel();
-        },
+        }
+      },
         error => {
           console.log('error: ', error)
         }
