@@ -11,24 +11,25 @@ export class ClaimService {
 
   constructor(private http: HttpClient) { }
 
-  retrieveSearch(searchDate){
-    const httpOptions = this.httpClientHeaders();
+  retrieveSearch(searchDate, bearer: string){
+    const httpOptions = this.httpClientHeaders(bearer);
 
     return this.http.post(this.searchUrl, searchDate, httpOptions);
   }
 
-  retrieveSearchById(payload) {
-    const httpOptions =this.httpClientHeaders();
+  retrieveSearchById(payload, bearer: string) {
+    const httpOptions =this.httpClientHeaders(bearer);
 
     return this.http.post(this.searchByIdUrl, payload, httpOptions);
   }
 
 
   // headers for HTTPCLIENT calls
-  private httpClientHeaders() {
+  private httpClientHeaders(bearer: string) {
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + bearer
       })
     };
   }

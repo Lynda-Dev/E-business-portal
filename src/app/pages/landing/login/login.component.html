@@ -1,25 +1,25 @@
- <form [formGroup]="loginFormGroup" (ngSubmit)="loginUSer()">
+ <form [formGroup]="loginFormGroup" (ngSubmit)="validateLogin()">
    <div class="container-fluid">
      <!-- row -->
      <div class="row">
        <div class="col-md-12">
          <mat-form-field class="input-full-width">
-           <input autocomplete="off" type="email" matInput placeholder="Email:" formControlName="email">
+           <input autocomplete="off" type="text" matInput placeholder="Username:" formControlName="username">
            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
          </mat-form-field>
        </div>
 
        <div class="col-md-12">
          <mat-form-field class="input-full-width">
-           <input autocomplete="new-password" type="password" matInput placeholder="Password:"
-             formControlName="keypaswd">
+           <input autocomplete="new-password" type="password" matInput placeholder="PIN&Token:"
+             formControlName="doorKey">
            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
          </mat-form-field>
        </div>
      </div>
      <!-- row -->
    </div>
-   <button [disabled]="!loginFormGroup.valid || loginIn"
+   <button type="submit"[disabled]="!loginFormGroup.valid || loginIn"
      class="btn btn-danger btn-md btn-block rounded-0 float-right text-capitalize">
      <i class="fa fa-unlock" aria-hidden="true"></i>
      Login

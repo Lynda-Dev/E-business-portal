@@ -9,17 +9,17 @@ import {
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
 import moment from "moment";
-import { ClaimFormDialogComponent } from "../../vendor/dialogs/claim-form-dialog/claim-form-dialog.component";
+import { ClaimFormDialogComponent } from "../../vendor/dialogs/view-form-dialog/view-form-dialog.component";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Validators } from "@angular/forms";
-import { ClaimService } from "../../../services/claim.service";
+import { ClaimService } from "../../../services/search.service";
 import { aggregateBy, process } from "@progress/kendo-data-query";
 @Component({
-  selector: "app-vendors",
-  templateUrl: "./vendors.component.html",
-  styleUrls: ["./vendors.component.css"],
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.css"],
 })
-export class VendorsComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   displayedColumns: string[] = [
     "sn",
     "name",
@@ -41,6 +41,10 @@ export class VendorsComponent implements OnInit {
 
   ebusinessFormGroup: FormGroup;
   searchByFormgroup: FormGroup;
+
+  public loadingDataByDate: boolean = false;
+
+  public loadingDataById: boolean = false;
 
   public emptydataSource: boolean = true;
 
@@ -75,6 +79,7 @@ export class VendorsComponent implements OnInit {
   // iNIT
 
   public getDataById() {
+    this.loadingDataById= true;
     this.emptydataSource = true;
 
     const payload = {
@@ -82,27 +87,32 @@ export class VendorsComponent implements OnInit {
       searchType: parseInt(this.searchByFormgroup.value["dataType"])
     }
 
-    console.log('search by: ', this.searchByFormgroup.value["searchBy"])
-    console.log('data type: ', this.searchByFormgroup.value["dataType"])
+    const bearer = localStorage.getItem('data');
 
-    this.searchService.retrieveSearchById(payload)
+    this.searchService.retrieveSearchById(payload, bearer)
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource(res['data']);
 
           if (res['data']['length'] > 0) {
             this.emptydataSource = false;
+
+            this.reportsList =  res['data'];
+            this.processExcel();
           }
-          console.log('length: ', res['data']['length'])
+
+          this.loadingDataById= false;
         },
         error => {
           console.log('error: ', error)
+          this.loadingDataById= false;
         }
       )
-
   }
 
   public getdata() {
+    this.loadingDataByDate = true;
+
     this.emptydataSource = true;
     var formStartDate = this.ebusinessFormGroup.value["startDate"];
 
@@ -122,25 +132,28 @@ export class VendorsComponent implements OnInit {
       endDate
     }
 
-    this.searchService.retrieveSearch(payload)
+    const bearer = localStorage.getItem('data');
+
+    this.searchService.retrieveSearch(payload, bearer)
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource(res['data']);
           if (res['data']['length'] > 0) {
             this.emptydataSource = false;
-          console.log('code: ', res['code'])
-          console.log('data: ', res['data'])
-          this.reportsList =  res['data'];
-          this.processExcel();
-        }
-      },
+
+            this.reportsList =  res['data'];
+            this.processExcel();
+          }
+
+          this.loadingDataByDate = false;
+        },
         error => {
           console.log('error: ', error)
+
+          this.loadingDataByDate = false;
         }
       )
-
   }
-
 
   public processExcel() {
     // Tie excel export data to result data
@@ -148,7 +161,6 @@ export class VendorsComponent implements OnInit {
       group: this.reportGroup
     }).data;
   }
-
 
   public openClaimDialog(claim) {
     const dialogRef = this.dialog.open(ClaimFormDialogComponent, {
@@ -216,61 +228,3 @@ export interface IRes {
 }
 
 const VENDOR_DATA1: IRes[] = []
-
-const VENDOR_DATA: Ivendor[] = [
-  {
-    sn: 1,
-    name: "Fouani Nig Ltd",
-    productName: "22 Burma Rd, Apapa 106101, Lagos",
-    sumInsured: "08037691450",
-    premium: "Electronics",
-    referenceNo: "Fouani@Fouani.com",
-    phoneNo: "num",
-    status: "active",
-    date: "",
-  },
-  {
-    sn: 2,
-    name: "Fouani Nig Ltd",
-    productName: "22 Burma Rd, Apapa 106101, Lagos",
-    sumInsured: "08037691450",
-    premium: "Electronics",
-    referenceNo: "Fouani@Fouani.com",
-    phoneNo: "num",
-    status: "active",
-    date: "",
-  },
-  {
-    sn: 3,
-    name: "Fouani Nig Ltd",
-    productName: "22 Burma Rd, Apapa 106101, Lagos",
-    sumInsured: "08037691450",
-    premium: "Electronics",
-    referenceNo: "Fouani@Fouani.com",
-    phoneNo: "num",
-    status: "active",
-    date: "",
-  },
-  {
-    sn: 4,
-    name: "Fouani Nig Ltd",
-    productName: "22 Burma Rd, Apapa 106101, Lagos",
-    sumInsured: "08037691450",
-    premium: "Electronics",
-    referenceNo: "Fouani@Fouani.com",
-    phoneNo: "num",
-    status: "active",
-    date: "",
-  },
-  {
-    sn: 5,
-    name: "Fouani Nig Ltd",
-    productName: "22 Burma Rd, Apapa 106101, Lagos",
-    sumInsured: "08037691450",
-    premium: "Electronics",
-    referenceNo: "Fouani@Fouani.com",
-    phoneNo: "num",
-    status: "active",
-    date: "",
-  },
-];

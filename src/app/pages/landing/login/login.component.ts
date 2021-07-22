@@ -22,50 +22,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginFormGroup = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(emailFormat)]],
-      keypaswd: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      doorKey: ['', [Validators.required]],
       // remeberme: [''],
     });
-  }
-
-  public loginUSer() {
-
-    this.startLoading();
-    this.clearLogiErrLoading();
-
-    if (this.loginFormGroup.invalid) {
-      console.log('err');
-    } else {
-      console.log(this.loginFormGroup.value);
-
-
-
-      setTimeout(() => {
-        // this.validateLogin();
-        this.fakeLogin(this.loginFormGroup.get('email').value, this.loginFormGroup.get('keypaswd').value);
-        // this.router.navigate(['/vendor/dashboard'], { relativeTo: this.route });
-      }, 1000);
-    }
-  }
-
-  fakeLogin(email, password) {
-
-    this.startLoading();
-    this.clearLogiErrLoading();
-
-    console.log(password);
-    if (password === 'password3' && email === 'vendor@zenithinsurance.com.ng') {
-      this.router.navigate(['/vendor/dashboard'], { relativeTo: this.route });
-    } else if (password === 'password1' && email === 'admin@zenithinsurance.com.ng') {
-      this.router.navigate(['/admin/vendors'], { relativeTo: this.route });
-    } else if (password === 'password2' && email === 'uw@zenithinsurance.com.ng') {
-      this.router.navigate(['/uw/policies'], { relativeTo: this.route });
-
-    } else {
-      this.loginErr = true;
-    }
-
-    this.stopLoading();
   }
 
   startLoading() {
@@ -78,34 +38,30 @@ export class LoginComponent implements OnInit {
     this.loginIn = false;
   }
 
-  clearLogiErrLoading() {
+  public validateLogin() {
+    this.startLoading();
 
-    this.loginErr = false;
-  }
+    this.loginServ.validate(this.loginFormGroup.value).pipe().subscribe(
+      res => {
+        console.log(res);
+        if (res['code'] && res['code'] === '00') {
+          const username = this.loginFormGroup.get(['username']).value;
 
-  private validateLogin() {
-    this.loginServ.validate(this.loginFormGroup.value).pipe().subscribe(res => {
-      console.log(res);
-      if (res['rescode'] && res['rescode'] === '00') {
-        this.loginServ.setLoginUser(true, res['role']);
+          localStorage.setItem('user', `${username.split('.')[0]} ${username.split('.')[1]}`);
+          localStorage.setItem('data', res['data'])
 
-        this.routeLogin(res['role']);
+          this.router.navigate(['/admin/dashboard'], { relativeTo: this.route });
 
-      } else {
+          this.stopLoading();
+        } else {
+          this.loginErr = true;
+          this.stopLoading();
+        }
+      },
+      () => {
+        this.stopLoading();
         this.loginErr = true;
       }
-      this.loginIn = false;
-    }, err => console.error('Observer got an error: ' + err),
-      () => console.log('Observer got a complete notification')
     );
-  }
-
-  private routeLogin(role: any) {
-    console.log(role);
-
-  }
-
-  private resetLogin() {
-    this.loginIn = false;
   }
 }

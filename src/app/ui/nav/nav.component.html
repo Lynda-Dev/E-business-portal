@@ -8,9 +8,13 @@
   <img class="img-logo float-right" src="assets/img/logo_light.png" alt="">
   <div class="collapse navbar-collapse" id="navbarNav"> </div>
 
-  <a class="navbar-brand text-light float-right" routerLink="/login">
+  <a class="navbar-brand text-light float-right" routerLink="#">
     <small><i class="fa fa-user-lock" aria-hidden="true"></i>
-      Logout
+      {{username}}
     </small>
   </a>
+
+  <button mat-raised-button (click)="logout()"><i class="fas fa-door-open"></i>
+    Logout
+  </button>
 </nav>

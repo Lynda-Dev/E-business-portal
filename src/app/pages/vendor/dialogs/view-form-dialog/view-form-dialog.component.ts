@@ -7,8 +7,8 @@ import { CertificateDialogComponent } from '../certificate-dialog/certificate-di
 
 @Component({
   selector: 'app-claim-form-dialog',
-  templateUrl: './claim-form-dialog.component.html',
-  styleUrls: ['./claim-form-dialog.component.css']
+  templateUrl: './view-form-dialog.component.html',
+  styleUrls: ['./view-form-dialog.component.css']
 })
 export class ClaimFormDialogComponent implements OnInit {
 
@@ -53,12 +53,7 @@ export class ClaimFormDialogComponent implements OnInit {
       product: [this.data.claim.product, [Validators.required]],
       quoteId: [this.data.claim.quoteId, [Validators.required]],
       refNo: [this.data.claim.refNo, [Validators.required]],
-      vehicleMake: [this.data.claim.vehicleMake, [Validators.required]],
-
-
-
-
-
+      vehicleMake: [this.data.claim.vehicleMake, [Validators.required]]
     });
   }  // oninit
 }

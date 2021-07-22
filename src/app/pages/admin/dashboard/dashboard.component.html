@@ -34,7 +34,8 @@
         [disabled]="!ebusinessFormGroup.valid"
         (click)="getdata()"
       >
-        Search
+        <span *ngIf="loadingDataByDate">Loading...</span>
+        <span *ngIf="!loadingDataByDate">Search</span>
       </button>
     </div>
 
@@ -64,7 +65,8 @@
         [disabled]="!searchByFormgroup.valid"
         (click)="getDataById()"
       >
-        Search
+        <span *ngIf="loadingDataById">Loading...</span>
+        <span *ngIf="!loadingDataById">Search</span>
       </button>
     </div>
   </div>
