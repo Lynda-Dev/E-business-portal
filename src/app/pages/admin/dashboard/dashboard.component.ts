@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Output, EventEmitter } from "@angular/core";
 import {
   animate,
   state,
@@ -6,7 +6,7 @@ import {
   transition,
   trigger,
 } from "@angular/animations";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDatepickerInputEvent, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
 import moment from "moment";
 import { ClaimFormDialogComponent } from "../../vendor/dialogs/view-form-dialog/view-form-dialog.component";
@@ -20,6 +20,9 @@ import { aggregateBy, process } from "@progress/kendo-data-query";
   styleUrls: ["./dashboard.component.css"],
 })
 export class DashboardComponent implements OnInit {
+@Output() dateChange = new EventEmitter<MatDatepickerInputEvent<any>>();
+@Output() endDateChange: EventEmitter<MatDatepickerInputEvent<any>> = new EventEmitter();
+
   displayedColumns: string[] = [
     "sn",
     "name",
@@ -33,6 +36,8 @@ export class DashboardComponent implements OnInit {
     "detail",
   ];
 
+  loaded = false;
+
   dataSource: MatTableDataSource<IRes>;
 
   // dataSource: MatTableDataSource<Ivendor>;
@@ -42,11 +47,17 @@ export class DashboardComponent implements OnInit {
   ebusinessFormGroup: FormGroup;
   searchByFormgroup: FormGroup;
 
+  public selectedType: string = '';
+
   public loadingDataByDate: boolean = false;
 
   public loadingDataById: boolean = false;
 
   public emptydataSource: boolean = true;
+
+  public startMax = new Date();
+
+  public invalidDateRange: boolean = false;
 
   public reportGroup: any[];
   public data: any[];
@@ -78,6 +89,25 @@ export class DashboardComponent implements OnInit {
   }
   // iNIT
 
+  // start date change
+  onDateChange(event: Event) {
+    this.dateChange.emit()
+    console.log('date change! ', event.target['value']);
+  }
+
+  // start date change
+  onEndDateChange(event: Event) {
+    this.dateChange.emit()
+    console.log('date change! ', event.target['value']);
+  }
+
+  onChange() {
+    const idType = ['Policy No', 'Ref No', 'Quote Id'];
+    const index = parseInt(this.searchByFormgroup.value["dataType"]);
+
+    this.selectedType = idType[index - 1];
+  }
+
   public getDataById() {
     this.loadingDataById= true;
     this.emptydataSource = true;
@@ -95,6 +125,8 @@ export class DashboardComponent implements OnInit {
           this.dataSource = new MatTableDataSource(res['data']);
 
           if (res['data']['length'] > 0) {
+
+            this.loaded = true;
             this.emptydataSource = false;
 
             this.reportsList =  res['data'];
@@ -127,32 +159,39 @@ export class DashboardComponent implements OnInit {
 
     console.log(`start date: ${startDate}, end date: ${endDate}`);
 
-    const payload = {
-      startDate,
-      endDate
-    }
+    if (startDate > endDate) {
+      this.invalidDateRange = true;
+    } else {
+      this.invalidDateRange = false;
 
-    const bearer = localStorage.getItem('data');
+      const payload = {
+        startDate,
+        endDate
+      }
 
-    this.searchService.retrieveSearch(payload, bearer)
-      .subscribe(
-        res => {
-          this.dataSource = new MatTableDataSource(res['data']);
-          if (res['data']['length'] > 0) {
-            this.emptydataSource = false;
+      const bearer = localStorage.getItem('data');
 
-            this.reportsList =  res['data'];
-            this.processExcel();
+      this.searchService.retrieveSearch(payload, bearer)
+        .subscribe(
+          res => {
+            this.dataSource = new MatTableDataSource(res['data']);
+            if (res['data']['length'] > 0) {
+              this.emptydataSource = false;
+              this.loaded = true;
+
+              this.reportsList =  res['data'];
+              this.processExcel();
+            }
+
+            this.loadingDataByDate = false;
+          },
+          error => {
+            console.log('error: ', error)
+
+            this.loadingDataByDate = false;
           }
-
-          this.loadingDataByDate = false;
-        },
-        error => {
-          console.log('error: ', error)
-
-          this.loadingDataByDate = false;
-        }
-      )
+        )
+    }
   }
 
   public processExcel() {

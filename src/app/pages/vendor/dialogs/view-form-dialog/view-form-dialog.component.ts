@@ -14,6 +14,11 @@ export class ClaimFormDialogComponent implements OnInit {
 
   claimFormGroup: FormGroup;
   dialog: any;
+
+
+  get filename (){
+    return 'https://selfservice.zenithinsurance.com.ng/selfservice.zenithinsurance.com.ng/Uploads/' + this.claimFormGroup.get(['licenseFilePath']).value;
+  }
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ClaimFormDialogComponent>,
 

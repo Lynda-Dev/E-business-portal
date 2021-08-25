@@ -11,7 +11,13 @@
         [formGroup]="ebusinessFormGroup"
       >
         <mat-label>Select start date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="startDate" />
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [max]="startMax"
+          (dateChange)="onDateChange($event)"
+          formControlName="startDate"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -20,7 +26,13 @@
     <div class="col-md-2">
       <mat-form-field appearance="fill" [formGroup]="ebusinessFormGroup">
         <mat-label>Select end date</mat-label>
-        <input matInput [matDatepicker]="pick" formControlName="endDate" />
+        <input
+          matInput
+          [matDatepicker]="pick"
+          [max]="startMax"
+          formControlName="endDate"
+          (dateChange)="onEndDateChange($event)"
+        />
         <mat-datepicker-toggle matSuffix [for]="pick"></mat-datepicker-toggle>
         <mat-datepicker #pick></mat-datepicker>
       </mat-form-field>
@@ -31,19 +43,20 @@
         mat-raised-button
         color="primary"
         type="submit"
-        [disabled]="!ebusinessFormGroup.valid"
+        [disabled]="!ebusinessFormGroup.valid || invalidDateRange"
         (click)="getdata()"
       >
         <span *ngIf="loadingDataByDate">Loading...</span>
         <span *ngIf="!loadingDataByDate">Search</span>
       </button>
+      <small *ngIf="invalidDateRange"><p class="text-danger">Invalid date range selected!</p></small>
     </div>
 
     <div class="col-md-2">
       <mat-form-field appearance="fill" [formGroup]="searchByFormgroup">
         <mat-label>Search by</mat-label>
-        <mat-select formControlName="dataType">
-          <mat-option value="1">Policy No</mat-option>
+        <mat-select formControlName="dataType" (selectionChange)="onChange()">
+          <mat-option value="1" >Policy No</mat-option>
           <mat-option value="3">Quote Id</mat-option>
           <mat-option value="2">Ref No</mat-option>
         </mat-select>
@@ -52,7 +65,7 @@
 
     <div class="col-md-2">
       <mat-form-field appearance="fill" [formGroup]="searchByFormgroup">
-        <mat-label>Search</mat-label>
+        <mat-label>Search {{selectedType}}</mat-label>
         <input matInput formControlName="searchBy" />
       </mat-form-field>
     </div>
@@ -71,7 +84,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div *ngIf="loaded" class="container">
     <div class="row">
       <div class="col-md-6">
         <mat-form-field>
@@ -96,7 +109,7 @@
     </div>
   </div>
 
-  <div class="mat-elevation-z8">
+  <div *ngIf="loaded" class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- SN Column -->
       <ng-container matColumnDef="sn">
@@ -191,7 +204,7 @@
     <mat-paginator [pageSizeOptions]="[10, 20, 40, 100]"></mat-paginator>
   </div>
 
-  <div class="float-right">
+  <div *ngIf="loaded"  class="float-right">
     <button
       (click)="excelexport.save()"
       type="button"
